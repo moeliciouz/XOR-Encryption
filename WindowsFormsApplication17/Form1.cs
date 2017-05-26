@@ -135,21 +135,21 @@ namespace XOR
         {
             string cipher = richTextBox2.Text;
             string ziffer = "";
-            int[] array = new int[8];
+            int[] BuchstabenBin = new int[8];
             int z = 0;
 
             for (int p = 0; p < ReverseStringString.Length; p++)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    array[i] = ReverseStringString[z % ReverseStringString.Length] - 48;
+                    BuchstabenBin[i] = ReverseStringString[z % ReverseStringString.Length] - 48;
 
                     z++;
 
                     richTextBox1.Text = ziffer;
                 }
 
-                ziffer += umwandel(array);
+                ziffer += umwandel(BuchstabenBin);
                 
             }
 
@@ -158,21 +158,21 @@ namespace XOR
 
         // Wandel die Bit Blöcke des entschlüsselten und aufgeteilten String wieder in Buchstaben um 
 
-        public char umwandel(int[] array)
+        public char umwandel(int[] BuchstabenBin)
         {
             int zahl = 0;
             int g = 7;
             char ziffer;
 
-            for (int c = 0; c < array.Length; c++)
+            for (int c = 0; c < BuchstabenBin.Length; c++)
             {
-                if (array[c] == 1)
-                    array[c] += 1;
+                if (BuchstabenBin[c] == 1)
+                    BuchstabenBin[c] += 1;
             }
 
             for (int i = 0; i < 8; i++)
             {
-                zahl += (int)Math.Pow(array[i], g);
+                zahl += (int)Math.Pow(BuchstabenBin[i], g);
                 g--;                             
             }            
 
