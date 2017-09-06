@@ -154,12 +154,9 @@ namespace XOR_Encrypt
                 {
 
                     BuchstabenBin[i] = ReverseStringString[z] % 8;
-                    
-                    //z++;
-                    
+                                                            
                     z = z + 1 == ReverseStringString.Length ? 0 : z + 1;
                     
-
                     richTextBox1.Text = ziffer;
                 }
 
@@ -192,9 +189,12 @@ namespace XOR_Encrypt
             {
                                 
                 if (i==7 && BuchstabenBin[i] == 0)
+
                     zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255)-1);
+
                 else
                     zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255));
+
                 g--;
                 
             }
