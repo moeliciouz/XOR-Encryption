@@ -154,22 +154,21 @@ namespace XORBitEncryptor
             string cipher = richTextBox2.Text;
             string ziffer = "";
             int[] BuchstabenBin = new int[8];
-            int z = 0;
 
-            for (int p = 0; p < ReverseStringString.Length; p++)
+            int z = 0; 
+
+            for (int p = 0; p < (ReverseStringString.Length/BuchstabenBin.Length); p++)
             {
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < BuchstabenBin.Length; i++)
                 {
-
-                    BuchstabenBin[i] = ReverseStringString[z] % 8;
-
+                    
+                    BuchstabenBin[i] = ReverseStringString[z] % BuchstabenBin.Length;                                     
+                                                                    
                     z = z + 1 == ReverseStringString.Length ? 0 : z + 1;
-
-                    richTextBox1.Text = ziffer;
+                    
                 }
-
                 ziffer += umwandel(BuchstabenBin);
-
+                richTextBox1.Text = ziffer;
             }
 
             return ziffer;
@@ -200,7 +199,7 @@ namespace XORBitEncryptor
                     zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255) - 1);
 
                 else
-                    zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255));
+                    zahl += (((int)Math.Pow(BuchstabenBin[i], g)) % 255);
 
                 g--;
 
