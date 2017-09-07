@@ -5,15 +5,21 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace XOR_Encrypt
+namespace XORBitEncryptor
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -94,11 +100,13 @@ namespace XOR_Encrypt
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
-            //Strings deklarieren
 
-            string Cipher = richTextBox2.Text;
+        
+        //Strings deklarieren
+
+        string Cipher = richTextBox2.Text;
             string Passwort = richTextBox3.Text;
 
             string ReverseStringString = "";
@@ -148,15 +156,15 @@ namespace XOR_Encrypt
             int[] BuchstabenBin = new int[8];
             int z = 0;
 
-            for (int p = 0;  p < ReverseStringString.Length; p++)
+            for (int p = 0; p < ReverseStringString.Length; p++)
             {
                 for (int i = 0; i < 8; i++)
                 {
 
                     BuchstabenBin[i] = ReverseStringString[z] % 8;
-                                                            
+
                     z = z + 1 == ReverseStringString.Length ? 0 : z + 1;
-                    
+
                     richTextBox1.Text = ziffer;
                 }
 
@@ -169,43 +177,37 @@ namespace XOR_Encrypt
 
         // Wandel die Bit Blöcke des entschlüsselten und aufgeteilten String wieder in Buchstaben um 
         
-
         public char umwandel(int[] BuchstabenBin)
         {
-            
+
             int g = 7;
             int zahl = 0;
             char ziffer;
 
             for (int c = 0; c < BuchstabenBin.Length; c++)
-            {                                  
-                
+            {
+
                 if (BuchstabenBin[c] == 1)
-                    BuchstabenBin[c] += 1;                                               
-               
+                    BuchstabenBin[c] += 1;
+
             }
 
             for (int i = 0; i < 8; i++)
             {
-                                
-                if (i==7 && BuchstabenBin[i] == 0)
 
-                    zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255)-1);
+                if (i == 7 && BuchstabenBin[i] == 0)
+
+                    zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255) - 1);
 
                 else
                     zahl += ((((int)Math.Pow(BuchstabenBin[i], g)) % 255));
 
                 g--;
-                
+
             }
-            
+
             ziffer = (char)(zahl);
             return ziffer;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        }        
     }
 }
